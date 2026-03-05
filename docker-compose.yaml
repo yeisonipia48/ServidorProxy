@@ -1,0 +1,15 @@
+services:
+  server-proxy:
+    container_name: server-proxy
+    build: .
+    volumes:
+      - ./squid.conf:/etc/squid/squid.conf
+      - ./blacklist.txt:/etc/squid/blacklist.txt
+    networks:
+      net1:
+        ipv4_address: 10.0.0.20
+    ports:
+      - 3128:3128
+networks:
+  net1:
+    external: true
